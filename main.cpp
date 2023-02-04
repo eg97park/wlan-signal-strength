@@ -73,7 +73,9 @@ int main(int argc, char* argv[])
         printf("[%s]: %ddbm\n", argv[2], antenna_signal);
         clear();
     }
-    
+
+    free(param.mac_);
+    pcap_close(handle);
     
 	return 0;
 }
