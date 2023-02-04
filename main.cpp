@@ -40,15 +40,16 @@ int main(int argc, char* argv[])
             break;
         }
 
-        // Check beacon frame.
-        dot11_radiotap_hdr* pkthdr_rtap = (dot11_radiotap_hdr*)packet;
+        /*
         dot11_base_fhdr* pkthdr_frame_base = (dot11_base_fhdr*)(packet + pkthdr_rtap->it_len);
         if (pkthdr_frame_base->fctl_field != TYPE_BEACON_FRAME)
         {
             continue;
         }
+        */
 
-        // Check MAC address.
+        // Check MAC address from general wlan frame. rcv -> src(transmitter) -> bssid.
+        dot11_radiotap_hdr* pkthdr_rtap = (dot11_radiotap_hdr*)packet;
         dot11_beacon_fhdr* pkthdr_frame_beacon = (dot11_beacon_fhdr*)(packet + pkthdr_rtap->it_len);
         if (std::memcmp(pkthdr_frame_beacon->src_addr, param.mac_, 6) != 0)
         {
