@@ -70,7 +70,8 @@ int main(int argc, char* argv[])
         {
             antenna_signal = rtap_map.at(IEEE80211_RADIOTAP_DBM_ANTSIGNAL);
         }
-        printf("[%s]: %ddbm\r", argv[2], antenna_signal);
+        printf("[%s]: %ddbm\n", argv[2], antenna_signal);
+        clear();
     }
     
     

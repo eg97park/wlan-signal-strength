@@ -53,3 +53,8 @@ uint8_t* parse_mac_addr(const char* mac_addr)
     
     return parsed_mac_addr;
 }
+
+void clear()
+{
+    std::cout << "\x1B[2J\x1B[H";
+}

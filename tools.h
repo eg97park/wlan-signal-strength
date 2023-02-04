@@ -50,3 +50,8 @@ void dump(void* p, size_t n);
  * @return uint8_t* 6개의 uint8_t 값으로 이루어진 배열의 첫 번째 원소의 주소.
  */
 uint8_t* parse_mac_addr(const char* mac_addr);
+
+/**
+ * @brief 콘솔 화면 지우는 함수.
+ */
+void clear();
