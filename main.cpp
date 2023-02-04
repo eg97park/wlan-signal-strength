@@ -61,21 +61,24 @@ int main(int argc, char* argv[])
             continue;
         }
 
+        // Parse all present fields.
         std::vector<uint32_t> presents_vector = rtparser.get_presents();
+
+        // Parse all present data to std::map.
         std::map<dot11_relem_enum, uint32_t> rtap_map = rtparser.get_radiotap_data_map();
 
-        int8_t antenna_signal = 0;
+        // Get IEEE80211_RADIOTAP_DBM_ANTSIGNAL from parsed std::map.
         std::map<dot11_relem_enum, uint32_t>::iterator is_exists_antsignal = rtap_map.find(IEEE80211_RADIOTAP_DBM_ANTSIGNAL);
         if (is_exists_antsignal != rtap_map.end())
         {
-            antenna_signal = rtap_map.at(IEEE80211_RADIOTAP_DBM_ANTSIGNAL);
+            int8_t antenna_signal = rtap_map.at(IEEE80211_RADIOTAP_DBM_ANTSIGNAL);
+            printf("[%s]: %ddbm\n", argv[2], antenna_signal);
+            clear();
         }
-        printf("[%s]: %ddbm\n", argv[2], antenna_signal);
-        clear();
     }
 
     free(param.mac_);
     pcap_close(handle);
-    
+
 	return 0;
 }
